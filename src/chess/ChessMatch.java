@@ -1,6 +1,8 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Piece;
+import boardgame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
@@ -15,7 +17,7 @@ public class ChessMatch {
 	
 	//matriz de peças de xadres dessa partida
 	public ChessPiece[][] getPieces(){
-		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getRows()];
+		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
 		
 		for(int i=0; i<board.getRows(); i++) {
 			for(int j=0; j<board.getColumns(); j++) {
@@ -25,8 +27,28 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		validateSourcePosition(source);
+		Piece capturedPiece = makeMove(source, target);
+		return (ChessPiece)capturedPiece;
+	}
+	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+	}
+	
+	private Piece makeMove(Position source, Position target) {
+		Piece p = board.removePiece(source);
+		Piece capturedPiece = board.removePiece(target);
+		board.placePiece(p, target);
+		return capturedPiece;
+	}
+	private void validateSourcePosition(Position position) {
+		if(!board.thereIsAPeace(position)) {
+			throw new ChessException("There is no piece on source position");
+		}
 	}
 	
 	private void initialSetup() {
