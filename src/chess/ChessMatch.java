@@ -103,16 +103,16 @@ public class ChessMatch {
 		}
 		*/
 		
-		/*
-		check = (testCheck(opponent(currentPlayer))) ? true : false;
+		
+		//check = (testCheck(opponent(currentPlayer))) ? true : false;
 
-		if (testCheckMate(opponent(currentPlayer))) {
-			checkMate = true;
-		}
-		else {
+		//if (testCheckMate(opponent(currentPlayer))) {
+		//	checkMate = true;
+		//}
+		//else {
 			nextTurn();
-		}
-		*/
+		//}
+		
 		
 		/*
 		// #specialmove en passant
@@ -254,9 +254,9 @@ public class ChessMatch {
 	*/
 	
 	private void validateSourcePosition(Position position) {
-		//if (!board.thereIsAPiece(position)) {
-		//	throw new ChessException("There is no piece on source position");
-		//}
+		if (!board.thereIsAPeace(position)) {
+			throw new ChessException("There is no piece on source position");
+		}
 		if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
 			throw new ChessException("The chosen piece is not yours");
 		}
