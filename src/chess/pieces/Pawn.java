@@ -10,9 +10,9 @@ public class Pawn extends ChessPiece {
 
 	private ChessMatch chessMatch;
 	
-	public Pawn(Board board, Color color) { // , ChessMatch chessMatch
+	public Pawn(Board board, Color color, ChessMatch chessMatch) {
 		super(board, color);
-		//this.chessMatch = chessMatch;
+		this.chessMatch = chessMatch;
 	}
 
 	@Override
