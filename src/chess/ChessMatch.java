@@ -175,7 +175,7 @@ public class ChessMatch {
 			Position targetT = new Position(source.getRow(), source.getColumn() + 1);
 			ChessPiece rook = (ChessPiece)board.removePiece(sourceT);
 			board.placePiece(rook, targetT);
-			//rook.increaseMoveCount();
+			rook.increaseMoveCount();
 		}
 
 		// #specialmove castling queenside rook
@@ -184,10 +184,9 @@ public class ChessMatch {
 			Position targetT = new Position(source.getRow(), source.getColumn() - 1);
 			ChessPiece rook = (ChessPiece)board.removePiece(sourceT);
 			board.placePiece(rook, targetT);
-			//rook.increaseMoveCount();
+			rook.increaseMoveCount();
 		}		
 		
-		/*
 		// #specialmove en passant
 		if (p instanceof Pawn) {
 			if (source.getColumn() != target.getColumn() && capturedPiece == null) {
@@ -203,7 +202,6 @@ public class ChessMatch {
 				piecesOnTheBoard.remove(capturedPiece);
 			}
 		}
-		*/
 		
 		return capturedPiece;
 	}
@@ -219,7 +217,7 @@ public class ChessMatch {
 			piecesOnTheBoard.add(capturedPiece);
 		}
 
-		/*
+		
 		// #specialmove castling kingside rook
 		if (p instanceof King && target.getColumn() == source.getColumn() + 2) {
 			Position sourceT = new Position(source.getRow(), source.getColumn() + 3);
@@ -228,20 +226,16 @@ public class ChessMatch {
 			board.placePiece(rook, sourceT);
 			rook.decreaseMoveCount();
 		}
-		*/
 		
-		/*
 		// #specialmove castling queenside rook
 		if (p instanceof King && target.getColumn() == source.getColumn() - 2) {
 			Position sourceT = new Position(source.getRow(), source.getColumn() - 4);
 			Position targetT = new Position(source.getRow(), source.getColumn() - 1);
 			ChessPiece rook = (ChessPiece)board.removePiece(targetT);
 			board.placePiece(rook, sourceT);
-			//rook.decreaseMoveCount();
+			rook.decreaseMoveCount();
 		}
-		*/
 		
-		/*
 		// #specialmove en passant
 		if (p instanceof Pawn) {
 			if (source.getColumn() != target.getColumn() && capturedPiece == enPassantVulnerable) {
@@ -255,10 +249,8 @@ public class ChessMatch {
 				}
 				board.placePiece(pawn, pawnPosition);
 			}
-		}
-		*/
+		}	
 	}
-	
 	
 	private void validateSourcePosition(Position position) {
 		if (!board.thereIsAPeace(position)) {
